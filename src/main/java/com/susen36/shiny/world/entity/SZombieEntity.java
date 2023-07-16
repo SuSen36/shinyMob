@@ -5,41 +5,28 @@ import com.susen36.shiny.util.EntityUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ToolActions;
 
-import static net.minecraft.world.entity.animal.Wolf.PREY_SELECTOR;
+
+public class SZombieEntity extends Zombie {
 
 
-public class IdEntity extends PathfinderMob {
-
-    public IdEntity(EntityType<? extends PathfinderMob> type, Level level) {
-        super(type, level);
+    public SZombieEntity(EntityType<? extends Zombie> zombie, Level level) {
+        super(zombie, level);
         if (!hasCustomName())
         {
             rename(this);
         }
     }
-
-    protected void registerGoals() {
-        this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, 0.4F));
-        this.goalSelector.addGoal(5, new MeleeAttackGoal(this, 1.0, true));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, LivingEntity.class, 8.0F));
-        this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
-
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, Player.class, 10, true, false, PREY_SELECTOR));
-       }
 
     public void tick() {
         super.tick();

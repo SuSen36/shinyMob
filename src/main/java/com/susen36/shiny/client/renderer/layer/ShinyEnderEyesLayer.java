@@ -1,4 +1,4 @@
-package com.susen36.shiny.client.renderer.entity.shiny.layer;
+package com.susen36.shiny.client.renderer.layer;
 
 import com.susen36.shiny.ShinyMob;
 import net.minecraft.client.model.EndermanModel;

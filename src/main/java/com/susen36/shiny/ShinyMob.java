@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-import static com.susen36.shiny.init.EntitiesInit.ENTITIES;
-import static com.susen36.shiny.init.ModItems.ITEMS;
+import static com.susen36.shiny.init.EntityInit.ENTITIES;
+import static com.susen36.shiny.init.ItemsInit.ITEMS;
 
 @Mod(ShinyMob.MODID)
 public class ShinyMob {
@@ -29,8 +29,8 @@ public class ShinyMob {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES);
-
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES){
+        };
     }
 
 }

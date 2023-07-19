@@ -2,9 +2,7 @@ package com.susen36.shiny.init;
 
 
 import com.susen36.shiny.ShinyMob;
-import com.susen36.shiny.client.model.entity.SAllayModel;
-import com.susen36.shiny.client.model.entity.SCreeperModel;
-import com.susen36.shiny.client.model.entity.SSnowGolemModel;
+import com.susen36.shiny.client.model.entity.*;
 import com.susen36.shiny.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
 import net.minecraft.client.renderer.entity.StrayRenderer;
@@ -23,6 +21,9 @@ public class ClientSetup {
         event.registerLayerDefinition(SAllayModel.LAYER_LOCATION, SAllayModel::createBodyLayer);
         event.registerLayerDefinition(SCreeperModel.LAYER_LOCATION, SCreeperModel::createBodyLayer);
         event.registerLayerDefinition(SSnowGolemModel.LAYER_LOCATION, SSnowGolemModel::createBodyLayer);
+        event.registerLayerDefinition(SPiglinModel.LAYER_LOCATION, SPiglinModel::createBodyLayer);
+        event.registerLayerDefinition(SWitherModel.LAYER_LOCATION, SWitherModel::createBodyLayer);
+
     }
     @SubscribeEvent
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
@@ -40,7 +41,16 @@ public class ClientSetup {
         event.registerEntityRenderer(EntityInit.SHINY_HUSK.get(), SHuskRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_ZOMBIE.get(), SZombieRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_STRIDER.get(), SStriderRender::new);
-
+        event.registerEntityRenderer(EntityInit.SHINY_SPIDER.get(), SSpiderRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_IRON_GOLEM.get(), SIronRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_SHULKER.get(), SShulkerRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_PANDA.get(), SPandaRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_PIG.get(), SPigRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_ZOMBIFIED_PIGLIN.get(), SZombifiedPiglinRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_PIGLIN.get(), SPiglinRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_WITHER_SKELETON.get(), SWitherSkeletonRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_WITHER.get(), SWitherRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_TURTLE.get(), STurtleRender::new);
 
     }
 }

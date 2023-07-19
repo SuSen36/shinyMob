@@ -36,6 +36,7 @@ public class SAllayEntity extends TamableAnimal {
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 0.3, 5.0F, 2.0F, true));
+        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Monster.class, 6.0F, 1.0, 1.2));
     }
 
     @Override

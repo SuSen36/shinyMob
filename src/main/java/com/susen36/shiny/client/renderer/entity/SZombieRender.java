@@ -1,7 +1,6 @@
 package com.susen36.shiny.client.renderer.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.susen36.shiny.client.renderer.layer.ZombiePlayerLayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -20,8 +19,7 @@ public class SZombieRender extends ZombieRenderer {
 
     public SZombieRender(EntityRendererProvider.Context context) {
         super(context);
-        this.addLayer(new ZombiePlayerLayer<>(this));
-
+       // this.addLayer(new ZombiePlayerLayer<>(this));
     }
     protected void renderNameTag(Zombie entity, Component p_117809_, PoseStack p_117810_, MultiBufferSource p_117811_, int p_117812_) {
         double d0 = this.entityRenderDispatcher.distanceToSqr(entity);

@@ -6,8 +6,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.monster.Husk;
-import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.animal.Turtle;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.hoglin.Hoglin;
+import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -31,7 +33,7 @@ public class EntityInit {
     public static final RegistryObject<EntityType<SCreeperEntity>> SHINY_CREEPER = registerEntity("shiny_creeper", EntityType.Builder.of(SCreeperEntity::new, MobCategory.MONSTER).sized(0.6F, 1.7F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SSnowGolemEntity>> SHINY_SNOW_GOLEM = registerEntity("shiny_snow_golem", EntityType.Builder.of(SSnowGolemEntity::new, MobCategory.MISC).immuneTo(Blocks.POWDER_SNOW).sized(0.7F, 1.9F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SBlazeEntity>> SHINY_BLAZE = registerEntity("shiny_blaze", EntityType.Builder.of(SBlazeEntity::new, MobCategory.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
-    public static final RegistryObject<EntityType<SWitherSkeletonEntity>> SHINY_WITHER_SKELETON = registerEntity("shiny_wither_skeleton", EntityType.Builder.of(SWitherSkeletonEntity::new, MobCategory.MONSTER).fireImmune().immuneTo(Blocks.WITHER_ROSE).sized(0.65F, 2.0F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SWitherSkeletonEntity>> SHINY_WITHER_SKELETON = registerEntity("shiny_wither_skeleton", EntityType.Builder.of(SWitherSkeletonEntity::new, MobCategory.MONSTER).fireImmune().immuneTo(Blocks.WITHER_ROSE).sized(0.6F, 1.99F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SGhastEntity>> SHINY_GHAST = registerEntity("shiny_ghast", EntityType.Builder.of(SGhastEntity::new, MobCategory.MONSTER).fireImmune().sized(0.5F, 0.5F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SSkeletonEntity>> SHINY_SKELETON = registerEntity("shiny_skeleton", EntityType.Builder.of(SSkeletonEntity::new, MobCategory.MONSTER).sized(0.6F, 1.99F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SWardenEntity>> SHINY_WARDEN = registerEntity("shiny_warden", EntityType.Builder.of(SWardenEntity::new, MobCategory.MISC).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
@@ -39,6 +41,17 @@ public class EntityInit {
     public static final RegistryObject<EntityType<SHuskEntity>> SHINY_HUSK = registerEntity("shiny_husk", EntityType.Builder.of(SHuskEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SZombieEntity>> SHINY_ZOMBIE = registerEntity("shiny_zombie", EntityType.Builder.of(SZombieEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SStriderEntity>> SHINY_STRIDER= registerEntity("shiny_strider", EntityType.Builder.of(SStriderEntity::new, MobCategory.MONSTER).fireImmune().sized(0.9F, 1.7F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SSpiderEntity>> SHINY_SPIDER= registerEntity("shiny_spider", EntityType.Builder.of(SSpiderEntity::new, MobCategory.MONSTER).sized(2.1F, 1.35F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SIronGolemEntity>> SHINY_IRON_GOLEM= registerEntity("shiny_iron_golem", EntityType.Builder.of(SIronGolemEntity::new, MobCategory.MISC).sized(1.4F, 2.7F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SShulkerEntity>> SHINY_SHULKER= registerEntity("shiny_shulker", EntityType.Builder.of(SShulkerEntity::new, MobCategory.MISC).fireImmune().canSpawnFarFromPlayer().sized(1.0F, 1.0F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SPandaEntity>> SHINY_PANDA= registerEntity("shiny_panda", EntityType.Builder.of(SPandaEntity::new, MobCategory.CREATURE).sized(1.3F, 1.25F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SPigEntity>> SHINY_PIG= registerEntity("shiny_pig", EntityType.Builder.of(SPigEntity::new, MobCategory.CREATURE).sized(0.9F, 0.9F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SZombifiedPiglinEntity>> SHINY_ZOMBIFIED_PIGLIN= registerEntity("shiny_zombified_piglin", EntityType.Builder.of(SZombifiedPiglinEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SPiglinEntity>> SHINY_PIGLIN= registerEntity("shiny_piglin", EntityType.Builder.of(SPiglinEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SWitherEntity>> SHINY_WITHER= registerEntity("shiny_wither", EntityType.Builder.of(SWitherEntity::new, MobCategory.MONSTER).fireImmune().immuneTo(Blocks.WITHER_ROSE).sized(0.75F, 1.6F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<STurtleEntity>> SHINY_TURTLE= registerEntity("shiny_turtle", EntityType.Builder.of(STurtleEntity::new, MobCategory.CREATURE).sized(1.2F, 0.4F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SHoglinEntity>> SHINY_HOGLIN= registerEntity("shiny_hoglin", EntityType.Builder.of(SHoglinEntity::new,MobCategory.MONSTER).sized(1.3964844F, 1.4F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+
 
     private static <E extends Mob> RegistryObject<EntityType<E>> registerEntity(String entityName, EntityType.Builder<E> builder, int baseEggColor, int overlayEggColor) {
         ResourceLocation nameLoc = new ResourceLocation(ShinyMob.MODID, entityName);
@@ -61,7 +74,18 @@ public class EntityInit {
         event.put(EntityInit.SHINY_STRAY.get(), SStrayEntity.createAttributes().build());
         event.put(EntityInit.SHINY_HUSK.get(), Husk.createAttributes().build());
         event.put(EntityInit.SHINY_ZOMBIE.get(), Zombie.createAttributes().build());
-        event.put(EntityInit.SHINY_STRIDER.get(), Zombie.createAttributes().build());
+        event.put(EntityInit.SHINY_STRIDER.get(), Strider.createAttributes().build());
+        event.put(EntityInit.SHINY_SPIDER.get(), SSpiderEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_IRON_GOLEM.get(), SIronGolemEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_SHULKER.get(), Shulker.createAttributes().build());
+        event.put(EntityInit.SHINY_PANDA.get(), SPandaEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_PIG.get(), SPigEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_ZOMBIFIED_PIGLIN.get(), ZombifiedPiglin.createAttributes().build());
+        event.put(EntityInit.SHINY_PIGLIN.get(), Piglin.createAttributes().build());
+        event.put(EntityInit.SHINY_WITHER.get(), SWitherEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_TURTLE.get(), Turtle.createAttributes().build());
+        event.put(EntityInit.SHINY_HOGLIN.get(), Hoglin.createAttributes().build());
+
     }
 
 }

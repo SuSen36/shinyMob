@@ -10,6 +10,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.SwellGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -29,6 +30,7 @@ public class SCreeperEntity extends Creeper {
         super(p_32278_, level);
     }
     protected void registerGoals() {
+        this.goalSelector.addGoal(2, new SwellGoal(this));
         this.goalSelector.addGoal(2, new KidnapAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(2, new FireWorkGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D, 0.0F));

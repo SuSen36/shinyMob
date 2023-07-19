@@ -1,6 +1,7 @@
 package com.susen36.shiny.world.entity;
 
 import com.mojang.serialization.Dynamic;
+import com.susen36.shiny.world.entity.ai.LookAtStrongholdGoal;
 import com.susen36.shiny.world.entity.ai.SWardenAi;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -13,9 +14,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.monster.warden.WardenAi;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Contract;
@@ -34,6 +37,11 @@ public class SWardenEntity extends Warden{
         return SWardenAi.makeBrain(this, p_219406_);
     }
 
+    protected void registerGoals() {
+        this.goalSelector.addGoal(7, new LookAtStrongholdGoal(this, 18.0F));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+       // this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, IronGolem.class, 6.0F, 1.0, 1.2));
+    }
     public void tick() {
         super.tick();
         this.noPhysics = false;

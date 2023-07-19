@@ -2,6 +2,7 @@ package com.susen36.shiny.world.entity.ai;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;
 
@@ -16,7 +17,7 @@ public class FlyingAttackGoal  extends Goal {
 
     public boolean canUse() {
         LivingEntity livingentity = this.mob.getTarget();
-        if (livingentity != null && livingentity.isAlive() && !this.mob.getMoveControl().hasWanted() && this.mob.level.random.nextInt(reducedTickDelay(5)) == 0) {
+        if (livingentity != null && livingentity.isAlive() && !this.mob.getMoveControl().hasWanted() && this.mob.level.random.nextInt(reducedTickDelay(4)) == 0) {
             return this.mob.distanceToSqr(livingentity) > this.mob.getBoundingBox().getSize();
         } else {
             return false;
@@ -31,7 +32,7 @@ public class FlyingAttackGoal  extends Goal {
         LivingEntity livingentity = this.mob.getTarget();
         if (livingentity != null) {
             Vec3 vec3 = livingentity.getEyePosition();
-            this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, 1.2f);
+            this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, this.mob.getAttributeValue(Attributes.FLYING_SPEED)*1.2f);
         }
     }
 
@@ -49,7 +50,7 @@ public class FlyingAttackGoal  extends Goal {
                 double d0 = this.mob.distanceToSqr(livingentity);
                 if (d0 < 9.0) {
                     Vec3 vec3 = livingentity.getEyePosition();
-                    this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, 1.2f);
+                    this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, this.mob.getAttributeValue(Attributes.FLYING_SPEED)*1.2f);
                 }
             }
         }

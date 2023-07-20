@@ -1,4 +1,21 @@
 {
-  "item.loongboat.loong_boat": "龙舟",
+  "item.shiny.shiny_allay_spawn_egg": "灼灵刷怪蛋",
+  "item.shiny.shiny_blaze_spawn_egg": "灵魂烈焰人刷怪蛋",
+  "item.shiny.shiny_cod_spawn_egg": "沙丁鱼刷怪蛋",
+  "item.shiny.shiny_creeper_spawn_egg": "烟花苦力怕刷怪蛋",
+  "item.shiny.shiny_enderman_spawn_egg": "守望者刷怪蛋",
+  "item.shiny.shiny_sheep_spawn_egg": "眠羊刷怪蛋",
+  "item.shiny.shiny_ghast_spawn_egg": "小恶魂刷怪蛋",
+  "item.shiny.shiny_hoglin_spawn_egg": "疣猪刷怪蛋",
+  "item.shiny.shiny_husk_spawn_egg": "食腐者刷怪蛋",
+
+
+
+
+
+
+
+
   "entity.loongboat.loong_boat": "龙舟"
+
 }

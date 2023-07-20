@@ -1,4 +1,22 @@
 {
-  "item.loongboat.loong_boat": "Loong Boat",
+  "item.shiny.shiny_allay_spawn_egg": "Shiny Allay Spawn Egg",
+  "item.shiny.shiny_blaze_spawn_egg": "Shiny Blaze Spawn Egg",
+  "item.shiny.shiny_cod_spawn_egg": "Shiny Cod Spawn Egg",
+  "item.shiny.shiny_creeper_spawn_egg": "Shiny Creeper Spawn Egg",
+  "item.shiny.shiny_enderman_spawn_egg": "Shiny EnderMan Spawn Egg",
+  "item.shiny.shiny_sheep_spawn_egg": "Shiny Sheep Spawn Egg",
+  "item.shiny.shiny_ghast_spawn_egg": "Shiny Ghast Spawn Egg",
+  "item.shiny.shiny_hoglin_spawn_egg": "Shiny Hoglin Spawn Egg",
+  "item.shiny.shiny_husk_spawn_egg": "Shiny Husk Spawn Egg",
+
+
+
+
+
+
+
+
+
+
   "entity.loongboat.loong_boat": "Loong Boat"
 }

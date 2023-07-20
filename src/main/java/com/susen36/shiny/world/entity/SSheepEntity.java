@@ -117,6 +117,6 @@ public class SSheepEntity extends Sheep {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, (double)0.225F).add(Attributes.ARMOR, 5.0D);
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH).add(Attributes.MOVEMENT_SPEED).add(Attributes.ATTACK_DAMAGE);
     }
 }

@@ -22,7 +22,7 @@ public class SHoglinEntity extends Hoglin {
         this.getBrain().tick((ServerLevel)this.level(), this);
         this.level().getProfiler().pop();
         HoglinAi.updateActivity(this);
-        if (this.isConverting()) {
+        if (this.isConverting()||this.getLastHurtByMob() instanceof SZoglinEntity) {
             this.playSoundEvent(SoundEvents.HOGLIN_CONVERTED_TO_ZOMBIFIED);
                 this.finishConversion((ServerLevel)this.level());
             }
@@ -33,7 +33,6 @@ public class SHoglinEntity extends Hoglin {
             zoglin.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 500, 0));
             net.minecraftforge.event.ForgeEventFactory.onLivingConvert(this, zoglin);
         }
-
     }
     public boolean isConverting() {
         return this.level().dimensionType().piglinSafe() && !this.isNoAi()&& !this.isImmuneToZombification();

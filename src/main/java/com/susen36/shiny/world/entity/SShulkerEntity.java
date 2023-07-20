@@ -63,7 +63,6 @@ public class SShulkerEntity extends Shulker implements HasCustomInventoryScreen,
             }
 
             return interactionresult;
-
     }
 
     public void openCustomInventoryScreen(Player p_219906_) {
@@ -72,9 +71,7 @@ public class SShulkerEntity extends Shulker implements HasCustomInventoryScreen,
             this.gameEvent(GameEvent.CONTAINER_OPEN, p_219906_);
             PiglinAi.angerNearbyPiglins(p_219906_, true);
         }
-
     }
-
 
     public void clearContent() {
         this.clearChestVehicleContent();

@@ -32,6 +32,7 @@ public class SPiglinEntity extends Piglin {
             this.playConvertedSound();
             this.finishConversion((ServerLevel) this.level());
         }
+        super.customServerAiStep();
     }
     protected void finishConversion(ServerLevel p_34663_) {
         ZombifiedPiglin zombifiedpiglin = this.convertTo(EntityInit.SHINY_ZOMBIFIED_PIGLIN.get(), true);
@@ -39,7 +40,6 @@ public class SPiglinEntity extends Piglin {
             zombifiedpiglin.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 500, 0));
             net.minecraftforge.event.ForgeEventFactory.onLivingConvert(this, zombifiedpiglin);
         }
-
     }
     public boolean isConverting() {
         return this.level().dimensionType().piglinSafe() && !this.isImmuneToZombification() && !this.isNoAi();

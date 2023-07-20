@@ -18,7 +18,9 @@ public class SPiglinRender  extends MobRenderer<SPiglinEntity, HumanoidModel<SPi
         this.addLayer(new ElytraLayer<>(this, context.getModelSet()));
         this.addLayer(new ItemInHandLayer<>(this, context.getItemInHandRenderer()));
     }
-
+    protected boolean isShaking(SPiglinEntity piglin) {
+        return super.isShaking(piglin) || piglin.isConverting();
+    }
     public ResourceLocation getTextureLocation(SPiglinEntity mob) {
         return new ResourceLocation(ShinyMob.MODID, "textures/entity/shiny_piglin.png");
     }

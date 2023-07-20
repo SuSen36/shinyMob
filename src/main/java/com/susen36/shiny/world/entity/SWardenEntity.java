@@ -32,7 +32,6 @@ public class SWardenEntity extends Warden{
         super(type, level);
     }
 
-
     protected Brain<?> makeBrain(Dynamic<?> p_219406_) {
         return SWardenAi.makeBrain(this, p_219406_);
     }
@@ -47,8 +46,8 @@ public class SWardenEntity extends Warden{
         this.noPhysics = false;
         this.setNoGravity(false);
         if ( --this.limitedLifeTicks <= 0) {
-            this.limitedLifeTicks = 500;
-            this.hurt(this.damageSources().starve(), 30.0F);
+            this.limitedLifeTicks = 50000;
+            this.kill();
         }
     }
     protected void customServerAiStep() {

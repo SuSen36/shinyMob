@@ -6,14 +6,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.entity.monster.hoglin.Hoglin;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -51,14 +53,21 @@ public class EntityInit {
     public static final RegistryObject<EntityType<SWitherEntity>> SHINY_WITHER= registerEntity("shiny_wither", EntityType.Builder.of(SWitherEntity::new, MobCategory.MONSTER).fireImmune().immuneTo(Blocks.WITHER_ROSE).sized(0.75F, 1.6F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<STurtleEntity>> SHINY_TURTLE= registerEntity("shiny_turtle", EntityType.Builder.of(STurtleEntity::new, MobCategory.CREATURE).sized(1.2F, 0.4F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SHoglinEntity>> SHINY_HOGLIN= registerEntity("shiny_hoglin", EntityType.Builder.of(SHoglinEntity::new,MobCategory.MONSTER).sized(1.3964844F, 1.4F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SZoglinEntity>> SHINY_ZOGLIN= registerEntity("shiny_zoglin", EntityType.Builder.of(SZoglinEntity::new,MobCategory.MONSTER).sized(1.3964844F, 1.4F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SCodEntity>> SHINY_COD= registerEntity("shiny_cod", EntityType.Builder.of(SCodEntity::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.3F).clientTrackingRange(4), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SSalmonEnity>> SHINY_SALMON= registerEntity("shiny_salmon", EntityType.Builder.of(SSalmonEnity::new,  MobCategory.WATER_AMBIENT).sized(0.7F, 0.4F).clientTrackingRange(4), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SPufferFishEntity>> SHINY_PUFFERFISH= registerEntity("shiny_pufferfish", EntityType.Builder.of(SPufferFishEntity::new,  MobCategory.AMBIENT).sized(0.7F, 0.7F).clientTrackingRange(4), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SSlimeEntity>> SHINY_SLIME= registerEntity("shiny_slime", EntityType.Builder.of(SSlimeEntity::new,  MobCategory.MONSTER).sized(2.04F, 2.04F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
 
 
     private static <E extends Mob> RegistryObject<EntityType<E>> registerEntity(String entityName, EntityType.Builder<E> builder, int baseEggColor, int overlayEggColor) {
         ResourceLocation nameLoc = new ResourceLocation(ShinyMob.MODID, entityName);
         RegistryObject<EntityType<E>> ret = ENTITIES.register(entityName, () -> builder.build(nameLoc.toString()));
-        ItemsInit.ITEMS.register(entityName + "_spawn_egg", () -> new ForgeSpawnEggItem(ret, baseEggColor, overlayEggColor, new Item.Properties()));
+        RegistryObject<Item> spawnEggItem = ItemsInit.ITEMS.register(entityName + "_spawn_egg", () -> new ForgeSpawnEggItem(ret, baseEggColor, overlayEggColor, new Item.Properties()));
+        ItemsInit.SPAWN_EGGS.add(spawnEggItem);
         return ret;
     }
+
     @SubscribeEvent
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
         event.put(EntityInit.SHINY_ENDERMAN.get(),SEnderManEntity.createAttributes().build());
@@ -84,8 +93,17 @@ public class EntityInit {
         event.put(EntityInit.SHINY_PIGLIN.get(), Piglin.createAttributes().build());
         event.put(EntityInit.SHINY_WITHER.get(), SWitherEntity.createAttributes().build());
         event.put(EntityInit.SHINY_TURTLE.get(), Turtle.createAttributes().build());
-        event.put(EntityInit.SHINY_HOGLIN.get(), Hoglin.createAttributes().build());
+        event.put(EntityInit.SHINY_HOGLIN.get(), SHoglinEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_ZOGLIN.get(), SZoglinEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_COD.get(), SCodEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_SALMON.get(), SSalmonEnity.createAttributes().build());
+        event.put(EntityInit.SHINY_PUFFERFISH.get(), SPufferFishEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_SLIME.get(), SSlimeEntity.createAttributes().build());
 
+    }
+    @SubscribeEvent
+    public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
+        event.register(SHINY_ENDERMAN.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
     }
 
 }

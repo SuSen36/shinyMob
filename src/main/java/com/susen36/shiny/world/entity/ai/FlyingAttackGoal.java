@@ -32,7 +32,7 @@ public class FlyingAttackGoal  extends Goal {
         LivingEntity livingentity = this.mob.getTarget();
         if (livingentity != null) {
             Vec3 vec3 = livingentity.getEyePosition();
-            this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, this.mob.getAttributeValue(Attributes.FLYING_SPEED)*1.2f);
+            this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, this.mob.getAttributeValue(Attributes.FLYING_SPEED)/2);
         }
     }
 
@@ -50,7 +50,7 @@ public class FlyingAttackGoal  extends Goal {
                 double d0 = this.mob.distanceToSqr(livingentity);
                 if (d0 < 9.0) {
                     Vec3 vec3 = livingentity.getEyePosition();
-                    this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, this.mob.getAttributeValue(Attributes.FLYING_SPEED)*1.2f);
+                    this.mob.getMoveControl().setWantedPosition(vec3.x, vec3.y, vec3.z, this.mob.getAttributeValue(Attributes.FLYING_SPEED)/2);
                 }
             }
         }

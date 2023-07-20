@@ -1,7 +1,9 @@
 package com.susen36.shiny;
 
 import com.mojang.logging.LogUtils;
+import com.susen36.shiny.init.ItemsInit;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,16 +23,18 @@ public class ShinyMob {
     public ShinyMob() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus bus = MinecraftForge.EVENT_BUS;
-
-        ITEMS.register(modEventBus);
         ENTITIES.register(modEventBus);
+        ITEMS.register(modEventBus);
+
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES){
+        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS){
+            ItemsInit.SPAWN_EGGS.forEach(registryObject -> event.accept(new ItemStack(registryObject.get())));
         };
     }
+
 
 }

@@ -1,5 +1,6 @@
 package com.susen36.shiny.world.entity;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class SBlazeEntity extends Blaze {
     public SBlazeEntity(EntityType<? extends Blaze> blaze, Level level) {
@@ -65,6 +67,7 @@ public class SBlazeEntity extends Blaze {
             return true;
         }
     }
+    protected void checkFallDamage(double p_19911_, boolean p_19912_, BlockState p_19913_, BlockPos p_19914_) {return;}
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.MOVEMENT_SPEED, (double)0.27F).add(Attributes.FOLLOW_RANGE, 48.0D);
     }

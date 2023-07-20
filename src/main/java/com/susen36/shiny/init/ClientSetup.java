@@ -5,6 +5,7 @@ import com.susen36.shiny.ShinyMob;
 import com.susen36.shiny.client.model.entity.*;
 import com.susen36.shiny.client.renderer.entity.*;
 import net.minecraft.client.renderer.entity.SkeletonRenderer;
+import net.minecraft.client.renderer.entity.SlimeRenderer;
 import net.minecraft.client.renderer.entity.StrayRenderer;
 import net.minecraft.client.renderer.entity.WitherSkeletonRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,6 +24,9 @@ public class ClientSetup {
         event.registerLayerDefinition(SSnowGolemModel.LAYER_LOCATION, SSnowGolemModel::createBodyLayer);
         event.registerLayerDefinition(SPiglinModel.LAYER_LOCATION, SPiglinModel::createBodyLayer);
         event.registerLayerDefinition(SWitherModel.LAYER_LOCATION, SWitherModel::createBodyLayer);
+        event.registerLayerDefinition(SHoglinModel.LAYER_LOCATION, SHoglinModel::createBodyLayer);
+        event.registerLayerDefinition(SPuffFishModelM.LAYER_LOCATION, SPuffFishModelM::createBodyLayer);
+        event.registerLayerDefinition(SPuffFishModel.LAYER_LOCATION, SPuffFishModel::createBodyLayer);
 
     }
     @SubscribeEvent
@@ -51,6 +55,12 @@ public class ClientSetup {
         event.registerEntityRenderer(EntityInit.SHINY_WITHER_SKELETON.get(), SWitherSkeletonRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_WITHER.get(), SWitherRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_TURTLE.get(), STurtleRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_HOGLIN.get(), SHoglinRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_ZOGLIN.get(), SZoglinRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_COD.get(), SCodRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_SALMON.get(), SSalmonRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_PUFFERFISH.get(), SPufferFishRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_SLIME.get(), SlimeRenderer::new);
 
     }
 }

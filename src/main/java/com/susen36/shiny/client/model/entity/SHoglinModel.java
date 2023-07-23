@@ -19,8 +19,6 @@ public class SHoglinModel <T extends Mob & HoglinBase> extends AgeableListModel<
 
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(ShinyMob.MODID, "shiny_hoglin"), "main");
 
-    private static final float DEFAULT_HEAD_X_ROT = 0.87266463F;
-    private static final float ATTACK_HEAD_X_ROT_END = -0.34906584F;
     private final ModelPart head;
     private final ModelPart body;
     private final ModelPart rightFrontLeg;

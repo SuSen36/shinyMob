@@ -4,10 +4,7 @@ package com.susen36.shiny.init;
 import com.susen36.shiny.ShinyMob;
 import com.susen36.shiny.client.model.entity.*;
 import com.susen36.shiny.client.renderer.entity.*;
-import net.minecraft.client.renderer.entity.SkeletonRenderer;
-import net.minecraft.client.renderer.entity.SlimeRenderer;
-import net.minecraft.client.renderer.entity.StrayRenderer;
-import net.minecraft.client.renderer.entity.WitherSkeletonRenderer;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -61,6 +58,26 @@ public class ClientSetup {
         event.registerEntityRenderer(EntityInit.SHINY_SALMON.get(), SSalmonRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_PUFFERFISH.get(), SPufferFishRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_SLIME.get(), SlimeRenderer::new);
+        event.registerEntityRenderer(EntityInit.SHINY_MAGMA_CUBE.get(), SMagmaCubeRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_SQUID.get(), SSquidRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_SILVERFISH.get(), SilverfishRenderer::new);
+        event.registerEntityRenderer(EntityInit.SHINY_ENDERMITE.get(), EndermiteRenderer::new);
+        event.registerEntityRenderer(EntityInit.SHINY_RABBIT.get(), RabbitRenderer::new);
+        event.registerEntityRenderer(EntityInit.SHINY_GLOW_SQUID.get(), SGlowSquidRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_GOAT.get(), SGoatRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_EVOKER.get(), EvokerRenderer::new);
+        event.registerEntityRenderer(EntityInit.SHINY_VEX.get(), SVexRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_WITCH.get(), SWitchRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_COW.get(), SCowRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_MOOSHROOM.get(), SMushroomCowRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_WOLF.get(), SWolfRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_OCELOT.get(), SOcelotRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_CAT.get(), SCatRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_HORSE.get(), SHorseRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_GUARDIAN.get(), SGuardianRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_ELDER_GUARDIAN.get(), SElderGuardianRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_BAT.get(), SBatRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_POLAR_BEAR.get(), SPolarBearRender::new);
 
     }
 }

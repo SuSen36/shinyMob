@@ -20,7 +20,7 @@ public class SGhastEntity extends Ghast {
     public SGhastEntity(EntityType<? extends Ghast> ghast, Level level) {
         super(ghast, level);
         this.moveControl = new FlyingMoveControl(this, 10, false);
-        this.xpReward=0;
+        this.xpReward=1;
     }
     protected void registerGoals() {
         this.goalSelector.addGoal(2, new FlyingAttackGoal(this));

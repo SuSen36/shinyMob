@@ -2,8 +2,11 @@ package com.susen36.shiny.event;
 
 import com.susen36.shiny.ShinyMob;
 import com.susen36.shiny.api.ISheepRespawnPosition;
+import com.susen36.shiny.data.ItemModelGenerator;
 import com.susen36.shiny.init.EntityInit;
 import com.susen36.shiny.world.entity.SSheepEntity;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -16,7 +19,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.util.ITeleporter;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -87,5 +92,14 @@ public class EventHandler {
                 entity.level.addFreshEntity(warden);
             }
         }
+    }
+    @SubscribeEvent
+    public static void gatherData(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = event.getGenerator().getPackOutput();
+        ExistingFileHelper helper = event.getExistingFileHelper();
+
+        generator.addProvider(event.includeClient(), new ItemModelGenerator(output, helper));
+
     }
 }

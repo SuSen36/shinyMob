@@ -1,11 +1,10 @@
 package com.susen36.shiny.world.entity;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
@@ -17,11 +16,14 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.Nullable;
 
 public class SAllayEntity extends TamableAnimal {
+    @Nullable
+    LivingEntity owner;
     public SAllayEntity(EntityType<? extends TamableAnimal> allay, Level level) {
         super(allay, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
@@ -38,14 +40,24 @@ public class SAllayEntity extends TamableAnimal {
         this.goalSelector.addGoal(6, new FollowOwnerGoal(this, 0.3, 5.0F, 2.0F, true));
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Monster.class, 6.0F, 1.0, 1.2));
     }
+    @Nullable
+    public LivingEntity getOwner() {
+        return this.owner;
+    }
 
+    public void setOwner(Mob owner) {
+        this.owner = owner;
+    }
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if (this.level().isClientSide) {
-            boolean flag = this.isOwnedBy(player) || this.isTame() || itemstack.is(Items.AMETHYST_SHARD) && !this.isTame();
+            boolean flag = this.isOwnedBy(player) || this.getOwner()==player || itemstack.is(Items.AMETHYST_SHARD) && !this.isTame();
             return flag ? InteractionResult.CONSUME : InteractionResult.PASS;
-        } else if (this.isTame()) {
+        } else if (this.getOwner()==player ) {
             if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
                 this.heal(this.getMaxHealth() / 5);
                 if (!player.getAbilities().instabuild) {
@@ -60,7 +72,7 @@ public class SAllayEntity extends TamableAnimal {
             }
 
             if (this.random.nextInt(5) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
-                this.tame(player);
+                this.setOwner(player);
                 this.navigation.stop();
                 this.level().broadcastEntityEvent(this, (byte) 7);
             } else {
@@ -76,8 +88,12 @@ public class SAllayEntity extends TamableAnimal {
     protected void dropEquipment() {
         super.dropEquipment();
         ItemStack itemstack = Items.TOTEM_OF_UNDYING.getDefaultInstance();
-           this.spawnAtLocation(itemstack);
+        if(this.random.nextInt(3)==0) {
+            this.spawnAtLocation(itemstack);
+        }
     }
+    protected void checkFallDamage(double p_19911_, boolean p_19912_, BlockState p_19913_, BlockPos p_19914_) {return;}
+
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {

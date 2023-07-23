@@ -22,7 +22,7 @@ public class SSpiderRender extends MobRenderer<SSpiderEntity, SpiderModel<SSpide
         return 180.0F;
     }
     protected void scale(SSpiderEntity spider, PoseStack poseStack, float p_114759_) {
-        poseStack.scale(1.5F, 1.5F, 1.5F);
+        poseStack.scale(1.2F, 1.2F, 1.2F);
     }
 
     public ResourceLocation getTextureLocation(SSpiderEntity p_116009_) {

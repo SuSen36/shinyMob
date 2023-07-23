@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Contract;
 import javax.annotation.Nullable;
 
 public class SWardenEntity extends Warden{
-    private int limitedLifeTicks;
+    private int limitedLifeTicks =5000;
 
     public SWardenEntity(EntityType<? extends Warden> type, Level level) {
         super(type, level);
@@ -46,7 +46,6 @@ public class SWardenEntity extends Warden{
         this.noPhysics = false;
         this.setNoGravity(false);
         if ( --this.limitedLifeTicks <= 0) {
-            this.limitedLifeTicks = 50000;
             this.kill();
         }
     }

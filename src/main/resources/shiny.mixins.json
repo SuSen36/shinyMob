@@ -8,8 +8,11 @@
   ],
   "mixins": [
     "CreeperMixin",
+    "GlowSquidMixin",
     "LivingEntityMixin",
     "ServerPlayerMixin",
-    "StriderMixin"
+    "SquidMixin",
+    "StriderMixin",
+    "WitchMixin"
   ]
 }

@@ -5,12 +5,14 @@ import com.susen36.shiny.world.entity.SHoglinEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SHoglinRender extends MobRenderer<SHoglinEntity, SHoglinModel<SHoglinEntity>> {
     public SHoglinRender(EntityRendererProvider.Context context) {
         super(context, new SHoglinModel<>(context.bakeLayer(SHoglinModel.LAYER_LOCATION)), 0.7f);
     }
-
     protected boolean isShaking(SHoglinEntity hoglin) {
         return super.isShaking(hoglin) || hoglin.isConverting();
     }

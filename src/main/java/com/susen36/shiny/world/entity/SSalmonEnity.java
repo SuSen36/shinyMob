@@ -1,5 +1,7 @@
 package com.susen36.shiny.world.entity;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -23,6 +25,7 @@ public class SSalmonEnity extends Salmon {
             if(this.isAlive()&&player.getFoodData().needsFood()) {
                 player.getFoodData().eat(2, 0.3F);
                 this.remove(RemovalReason.DISCARDED);
+                this.level.playSound(player,player.blockPosition(), SoundEvents.CAT_EAT, SoundSource.PLAYERS);
                 ret = InteractionResult.CONSUME;
             } else {
                 ret = InteractionResult.PASS;

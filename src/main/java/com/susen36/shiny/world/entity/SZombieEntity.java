@@ -9,8 +9,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.item.ProjectileWeaponItem;
-import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ToolActions;
 
@@ -38,6 +36,13 @@ public class SZombieEntity extends Zombie {
                 this.setItemSlot(EquipmentSlot.LEGS, target.getItemBySlot(EquipmentSlot.LEGS));
                 this.setItemSlot(EquipmentSlot.FEET, target.getItemBySlot(EquipmentSlot.FEET));
             }
+
+               this.setDropChance(EquipmentSlot.MAINHAND, 0.0F);
+               this.setDropChance(EquipmentSlot.OFFHAND, 0.0F);
+               this.setDropChance(EquipmentSlot.HEAD, 0.0F);
+               this.setDropChance(EquipmentSlot.CHEST, 0.0F);
+               this.setDropChance(EquipmentSlot.LEGS, 0.0F);
+               this.setDropChance(EquipmentSlot.FEET, 0.0F);
         }
     }
 
@@ -54,10 +59,6 @@ public class SZombieEntity extends Zombie {
     }
     public boolean isBlocking() {
         return this.getMainHandItem().canPerformAction(ToolActions.SHIELD_BLOCK) || this.getOffhandItem().canPerformAction(ToolActions.SHIELD_BLOCK);
-    }
-
-    public boolean shouldShoot() {
-        return this.getMainHandItem().getItem() instanceof ProjectileWeaponItem || this.getMainHandItem().getItem() instanceof TridentItem;
     }
 
 }

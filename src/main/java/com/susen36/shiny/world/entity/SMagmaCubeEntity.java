@@ -1,36 +1,45 @@
 package com.susen36.shiny.world.entity;
 
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.MagmaCube;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class SMagaCubeEntity extends MagmaCube {
-    private static final EntityDataAccessor<Boolean> SOLIDIFY = SynchedEntityData.defineId(SMagaCubeEntity.class, EntityDataSerializers.BOOLEAN);
+public class SMagmaCubeEntity extends MagmaCube {
+    private static final EntityDataAccessor<Boolean> SOLIDIFY = SynchedEntityData.defineId(SMagmaCubeEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public SMagaCubeEntity(EntityType<? extends MagmaCube> type, Level level) {
+    public SMagmaCubeEntity(EntityType<? extends MagmaCube> type, Level level) {
         super(type, level);
     }
     public void tick(){
         super.tick();
         if(!this.level().isClientSide){
         if (this.isSensitiveToWater() && this.isInWaterRainOrBubble()&&!this.getSolidState()) {
-            setSolidState(true);
+            this.spawnAnim();
+            this.setSolidState(true);
         }
         if(this.getSolidState()){
-            this.getAttribute(Attributes.ARMOR).setBaseValue((double)(6+this.getAttribute(Attributes.ARMOR).getBaseValue()*2));
+            this.getAttribute(Attributes.ARMOR).setBaseValue((double)(2+this.getAttribute(Attributes.ARMOR).getBaseValue()*1.5));
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)(this.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue()/1.5));
         }
-       }else if (this.level().isClientSide&&this.getLastDamageSource()==this.damageSources().drown()){
-            for(int i = 0; i < 3; ++i) {
-                this.level().addParticle(ParticleTypes.SMOKE, this.getRandomX(0.8D), this.getRandomY(), this.getRandomZ(0.8D), 0.0D, 0.0D, 0.0D);
-            }
+       }
+    }
+    public boolean doHurtTarget(Entity entity) {
+        boolean flag = super.doHurtTarget(entity);
+        if (flag && !this.getSolidState() && entity instanceof LivingEntity) {
+            float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+            entity.setSecondsOnFire((int)(f*2));
         }
+        return flag;
     }
     @Override
     public void remove(Entity.RemovalReason removalReason) {
@@ -41,7 +50,15 @@ public class SMagaCubeEntity extends MagmaCube {
     public boolean isSensitiveToWater() {
         return !getSolidState();
     }
-
+    protected void checkFallDamage(double p_19911_, boolean p_19912_, BlockState p_19913_, BlockPos p_19914_) {return;}
+    protected void dropEquipment() {
+        super.dropEquipment();
+        if(this.getSolidState()){
+            this.spawnAtLocation(Items.BASALT);
+         } else {
+            this.spawnAtLocation(Items.MAGMA_CREAM);
+        }
+    }
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(SOLIDIFY, false);
@@ -71,4 +88,5 @@ public class SMagaCubeEntity extends MagmaCube {
         super.readAdditionalSaveData(p_29613_);
         this.setSolidState(p_29613_.getBoolean("Solidify"));
     }
+
 }

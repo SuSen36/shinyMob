@@ -1,8 +1,6 @@
 package com.susen36.shiny.mixin;
 
 import com.susen36.shiny.world.entity.SAllayEntity;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.Stats;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -10,7 +8,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,6 +31,8 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow public abstract boolean addEffect(MobEffectInstance p_21165_);
 
+    @Shadow public abstract void indicateDamage(double p_270514_, double p_270826_);
+
     public LivingEntityMixin(EntityType<?> p_19870_, Level p_19871_) {
         super(p_19870_, p_19871_);
     }
@@ -55,10 +54,6 @@ public abstract class LivingEntityMixin extends Entity {
                     SAllayEntity entity = allay.get(0);
                     if (this.isDeadOrDying() && entity != null) {
                         if (flag && entity.getOwner() != null && entity.getOwner().getUUID().equals(this.getUUID()) && this.isDeadOrDying()) {
-                            if (entity.getOwner() instanceof ServerPlayer serverplayer) {
-                                serverplayer.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING), 1);
-                            }
-
                             this.setHealth(1.0F);
                             this.removeAllEffects();
                             this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
@@ -66,7 +61,6 @@ public abstract class LivingEntityMixin extends Entity {
                             this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
                             this.level().broadcastEntityEvent(this, (byte) 35);
                             entity.kill();
-
                         }
                     }
                 }

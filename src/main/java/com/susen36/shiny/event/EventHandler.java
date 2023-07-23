@@ -82,8 +82,11 @@ public class EventHandler {
         ItemStack itemStack = item.getDefaultInstance();
         if(! event.getLevel().isClientSide&&event.getHand() == InteractionHand.MAIN_HAND){
             if (entity.getType() == EntityType.WARDEN  && item.equals(Items.ENDER_EYE)) {
-                if (!player.isCreative()) {
+                if (!player.isCreative()&&entity.level.random.nextInt(3)==0) {
                     item.finishUsingItem(item.getDefaultInstance(),player.level,player);
+                    itemStack.shrink(1);
+                }else {
+                    entity.level().broadcastEntityEvent(entity, (byte) 6);
                     itemStack.shrink(1);
                 }
                 LivingEntity warden = EntityInit.SHINY_WARDEN.get().create(entity.level);

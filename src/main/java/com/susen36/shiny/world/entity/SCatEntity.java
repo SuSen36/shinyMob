@@ -1,11 +1,14 @@
 package com.susen36.shiny.world.entity;
 
+import com.susen36.shiny.init.EntityInit;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Cat;
@@ -16,6 +19,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class SCatEntity extends Cat {
     private static final Ingredient TEMPT_INGREDIENT = Ingredient.of(Items.COD, Items.SALMON);
@@ -59,6 +63,28 @@ public class SCatEntity extends Cat {
             return ret;
         }
         return InteractionResult.PASS;
+    }
+    @Nullable
+    public Cat getBreedOffspring(ServerLevel p_148870_, AgeableMob p_148871_) {
+        SCatEntity cat = EntityInit.SHINY_CAT.get().create(p_148870_);
+        if (cat != null && p_148871_ instanceof Cat cat1) {
+            if (this.random.nextBoolean()) {
+                cat.setVariant(this.getVariant());
+            } else {
+                cat.setVariant(cat1.getVariant());
+            }
+
+            if (this.isTame()) {
+                cat.setOwnerUUID(this.getOwnerUUID());
+                cat.setTame(true);
+                if (this.random.nextBoolean()) {
+                    cat.setCollarColor(this.getCollarColor());
+                } else {
+                    cat.setCollarColor(cat1.getCollarColor());
+                }
+            }
+        }
+        return cat;
     }
     public boolean isFood(ItemStack p_28177_) {
         return TEMPT_INGREDIENT.test(p_28177_);

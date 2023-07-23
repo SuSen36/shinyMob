@@ -167,4 +167,5 @@ public class SShulkerEntity extends Shulker implements HasCustomInventoryScreen,
     public void stopOpen(Player p_270286_) {
         this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(p_270286_));
     }
+
 }

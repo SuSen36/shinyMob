@@ -70,7 +70,6 @@ public class SAllayEntity extends TamableAnimal {
             if (!player.getAbilities().instabuild) {
                 itemstack.shrink(1);
             }
-
             if (this.random.nextInt(5) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
                 this.setOwner(player);
                 this.navigation.stop();

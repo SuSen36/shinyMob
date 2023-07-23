@@ -46,7 +46,7 @@ public class SGoatEntity extends Goat {
         if (this.level().random.nextInt(80) == 0) {
             int i = this.random.nextInt(16)+1;
             isRestless(this.level(), this);
-            this.level.addParticle(ParticleTypes.NOTE, this.getX(), this.getY() + 1.2D, this.getZ() + 1.5D, (double)i / 24.0D, 0.0D, 0.0D);
+            this.level.addParticle(ParticleTypes.NOTE, this.getX(), this.getY() + 1.2D, this.getZ() + 1.5D, (double)i / 12.0D, 0.0D, 0.0D);
         }
         super.aiStep();
     }

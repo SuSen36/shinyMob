@@ -1,20 +1,20 @@
 package com.susen36.shiny.world.entity;
 
 
+import com.susen36.shiny.init.EntityInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ToolActions;
 
+import javax.annotation.Nullable;
+
 
 public class SZombieEntity extends Zombie {
-
 
     public SZombieEntity(EntityType<? extends Zombie> zombie, Level level) {
         super(zombie, level);
@@ -60,5 +60,8 @@ public class SZombieEntity extends Zombie {
     public boolean isBlocking() {
         return this.getMainHandItem().canPerformAction(ToolActions.SHIELD_BLOCK) || this.getOffhandItem().canPerformAction(ToolActions.SHIELD_BLOCK);
     }
-
+    @Nullable
+    public Zombie getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
+        return EntityInit.SHINY_ZOMBIE.get().create(p_149001_);
+    }
 }

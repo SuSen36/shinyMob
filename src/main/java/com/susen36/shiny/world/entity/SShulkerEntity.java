@@ -1,5 +1,6 @@
 package com.susen36.shiny.world.entity;
 
+import com.susen36.shiny.ShinyMob;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -16,11 +17,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.ContainerEntity;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ShulkerBoxMenu;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 import static net.minecraft.world.Containers.dropContents;
 
@@ -29,11 +33,12 @@ public class SShulkerEntity extends Shulker implements HasCustomInventoryScreen,
     @Nullable
     private ResourceLocation lootTable;
     private long lootTableSeed;
+    public static final ResourceLocation LOOT_TABLE = new ResourceLocation(ShinyMob.MODID, "chests/shiny_shulker");
 
-    public SShulkerEntity(EntityType<? extends Shulker> p_219869_, Level p_219870_) {
-        super(p_219869_, p_219870_);
+
+    public SShulkerEntity(EntityType<? extends Shulker> type, Level level) {
+        super(type, level);
     }
-
 
     public void addAdditionalSaveData(CompoundTag p_219908_) {
         super.addAdditionalSaveData(p_219908_);
@@ -54,15 +59,22 @@ public class SShulkerEntity extends Shulker implements HasCustomInventoryScreen,
     }
 
 
-    public InteractionResult mobInteract(Player p_219898_, InteractionHand p_219899_) {
-
-            InteractionResult interactionresult = this.interactWithContainerVehicle(p_219898_);
-            if (interactionresult.consumesAction()) {
-                this.gameEvent(GameEvent.CONTAINER_OPEN, p_219898_);
-                PiglinAi.angerNearbyPiglins(p_219898_, true);
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+            InteractionResult interactionresult = this.interactWithContainerVehicle(player);
+        if (itemStack.getItem() instanceof DyeItem) {
+            DyeItem dyeitem = (DyeItem) itemStack.getItem();
+            DyeColor dyecolor = dyeitem.getDyeColor();
+            if (dyecolor != this.getColor()) {
+                this.setVariant(Optional.of(dyecolor));
+                if (!player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
+                }
+                return InteractionResult.SUCCESS;
             }
+        }
 
-            return interactionresult;
+            return super.mobInteract(player,hand);
     }
 
     public void openCustomInventoryScreen(Player p_219906_) {
@@ -109,12 +121,12 @@ public class SShulkerEntity extends Shulker implements HasCustomInventoryScreen,
     }
 
     @Nullable
-    public AbstractContainerMenu createMenu(int p_219910_, Inventory p_219911_, Player p_219912_) {
+    public AbstractContainerMenu createMenu(int p_219910_, Inventory inventory, Player p_219912_) {
         if (this.lootTable != null && p_219912_.isSpectator()) {
             return null;
         } else {
-            this.unpackLootTable(p_219911_.player);
-            return new ShulkerBoxMenu(p_219910_, p_219911_, this);
+            this.unpackLootTable(inventory.player);
+            return new ShulkerBoxMenu(p_219910_, inventory, this);
         }
     }
 
@@ -140,6 +152,10 @@ public class SShulkerEntity extends Shulker implements HasCustomInventoryScreen,
 
     public void clearItemStacks() {
         this.itemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+    }
+    public void setLootData(DyeColor color, ResourceLocation resourceLocation, long seed){
+        this.setLootTable(resourceLocation);
+        this.setLootTableSeed(seed);
     }
 
     // Forge Start

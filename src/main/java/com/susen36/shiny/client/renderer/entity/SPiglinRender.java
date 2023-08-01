@@ -10,7 +10,10 @@ import net.minecraft.client.renderer.entity.layers.ArrowLayer;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SPiglinRender  extends MobRenderer<SPiglinEntity, HumanoidModel<SPiglinEntity>> {
     public SPiglinRender(EntityRendererProvider.Context context) {
         super(context, new SPiglinModel(context.bakeLayer(SPiglinModel.LAYER_LOCATION),false), 0.4F);

@@ -88,5 +88,4 @@ public class SMagmaCubeEntity extends MagmaCube {
         super.readAdditionalSaveData(p_29613_);
         this.setSolidState(p_29613_.getBoolean("Solidify"));
     }
-
 }

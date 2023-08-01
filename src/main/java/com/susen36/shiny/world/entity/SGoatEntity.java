@@ -1,17 +1,17 @@
 package com.susen36.shiny.world.entity;
 
+import com.susen36.shiny.init.EntityInit;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.goat.Goat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class SGoatEntity extends Goat {
@@ -61,5 +61,9 @@ public class SGoatEntity extends Goat {
                 }
             }
         }
+    }
+    @Nullable
+    public Goat getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
+        return EntityInit.SHINY_GOAT.get().create(p_149001_);
     }
 }

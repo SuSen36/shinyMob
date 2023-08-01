@@ -1,14 +1,16 @@
 package com.susen36.shiny.world.entity;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
+import com.susen36.shiny.init.EntityInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
@@ -38,28 +40,18 @@ public class SHorseEntity extends AbstractHorse{
 
     public SHorseEntity(EntityType<? extends AbstractHorse> type, Level level) {
         super(type, level);
-        this.setArmor();
     }
     private static final Map<DyeColor, float[]> COLORARRAY_BY_COLOR = Maps.<DyeColor, float[]>newEnumMap(Arrays.stream(DyeColor.values()).collect(Collectors.toMap((p_29868_) -> {
         return p_29868_;
     }, SHorseEntity::createColor)));
-    @VisibleForTesting
-    public void setArmor() {
-        int i = this.getVariant().armor;
-        this.reapplyPosition();
-        this.refreshDimensions();
-        this.getAttribute(Attributes.ARMOR).setBaseValue((double)(i ));
-        //this.xpReward = i;
-    }
+
     public static ArmorType getRandomType(RandomSource randomSource) {
         int i = randomSource.nextInt(100);
-        if (i < 5) {
+        if (i < 15) {
             return ArmorType.LEATHER;
-        } else if (i < 10) {
-            return ArmorType.IRON;
-        } else if (i < 15) {
+        } else if (i < 35) {
             return ArmorType.GOLD;
-        } else if (i < 18) {
+        } else if (i < 45) {
             return ArmorType.DIAMOND;
         }
         return ArmorType.IRON;
@@ -88,9 +80,10 @@ public class SHorseEntity extends AbstractHorse{
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor levelAccessor, DifficultyInstance p_29836_, MobSpawnType p_29837_, @Nullable SpawnGroupData p_29838_, @Nullable CompoundTag p_29839_) {
         this.setVariant(getRandomType(levelAccessor.getRandom()));
-        if(this.getVariant()==this.getVariant().LEATHER){
+        if(this.getVariant()==ArmorType.LEATHER){
             this.setColor(getRandomSheepColor(levelAccessor.getRandom()));
         }
+        this.setArmor();
         return super.finalizeSpawn(levelAccessor, p_29836_, p_29837_, p_29838_, p_29839_);
     }
 
@@ -109,6 +102,11 @@ public class SHorseEntity extends AbstractHorse{
         super.readAdditionalSaveData(tag);
         this.setVariant(ArmorType.byType(tag.getString("Type")));
         this.setColor(DyeColor.byId(tag.getByte("Color")));
+        this.setArmor();
+       }
+    public void setArmor(){
+        int i = getVariant().armor;
+        this.getAttribute(Attributes.ARMOR).setBaseValue((double)(i));
     }
     public static DyeColor getRandomSheepColor(RandomSource p_218262_) {
         int i = p_218262_.nextInt(100);
@@ -143,8 +141,12 @@ public class SHorseEntity extends AbstractHorse{
     public ArmorType getVariant() {
         return ArmorType.byType(this.entityData.get(DATA_TYPE));
     }
+    @Nullable
+    public SHorseEntity getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
+        return EntityInit.SHINY_HORSE.get().create(p_149001_);
+    }
     public static AttributeSupplier.Builder createAttributes() {
-        return createBaseHorseAttributes().add(Attributes.FOLLOW_RANGE, 40.0);
+        return createBaseHorseAttributes().add(Attributes.FOLLOW_RANGE, 40.0).add(Attributes.MAX_HEALTH,32);
     }
     public static enum ArmorType implements StringRepresentable {
         LEATHER("leather",3),

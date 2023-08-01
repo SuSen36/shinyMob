@@ -49,6 +49,7 @@ public class SStrayEntity extends Stray {
         this.setItemSlot(EquipmentSlot.MAINHAND, PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), Potions.HEALING));
         this.setItemSlot(EquipmentSlot.OFFHAND, PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), Potions.SLOWNESS));
     }
+
     public void performRangedAttack(LivingEntity target, float p_34144_) {
             Vec3 vec3 = target.getDeltaMovement();
             double d0 = target.getX() + vec3.x - this.getX();

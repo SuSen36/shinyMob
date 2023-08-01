@@ -48,6 +48,18 @@
   "item.shiny.shiny_zoglin_spawn_egg": "僵尸疣猪刷怪蛋",
   "item.shiny.shiny_zombie_spawn_egg": "本我刷怪蛋",
   "item.shiny.shiny_zombified_piglin_spawn_egg": "僵尸猪人刷怪蛋",
+  "item.shiny.shiny_tropical_fish_spawn_egg": "小丑鱼刷怪蛋",
+  "item.shiny.shiny_zombie_horse_spawn_egg": "溺尸马刷怪蛋",
+  "item.shiny.shiny_skeleton_horse_spawn_egg": "凋零骷髅马刷怪蛋",
+  "item.shiny.shiny_phantom_spawn_egg": "食腐者之翼刷怪蛋",
+  "item.shiny.shiny_axolotl_spawn_egg": "草鱼刷怪蛋",
+  "item.shiny.shiny_vindicator_spawn_egg": "殉道者刷怪蛋",
+  "item.shiny.shiny_pillager_spawn_egg": "持弓掠夺者刷怪蛋",
+  "item.shiny.shiny_bee_spawn_egg": "蜜蜂幼虫刷怪蛋",
+  "item.shiny.shiny_sniffer_spawn_egg": "土豆嗅探者刷怪蛋",
+  "item.shiny.shiny_chicken_spawn_egg": "肉鸡刷怪蛋",
+  "item.shiny.shiny_fox_spawn_egg": "Angelina刷怪蛋",
+
 
 
 
@@ -99,6 +111,17 @@
   "entity.shiny.shiny_guardian": "水雷",
   "entity.shiny.shiny_elder_guardian": "机械守卫",
   "entity.shiny.shiny_bat": "超音蝠",
-  "entity.shiny.shiny_polar_bear": "棕熊"
+  "entity.shiny.shiny_polar_bear": "棕熊",
+  "entity.shiny.shiny_tropical_fish": "小丑鱼",
+  "entity.shiny.shiny_zombie_horse": "溺尸马",
+  "entity.shiny.shiny_skeleton_horse": "凋零骷髅马",
+  "entity.shiny.shiny_phantom": "食腐者之翼",
+  "entity.shiny.shiny_axolotl": "草鱼",
+  "entity.shiny.shiny_vindicator": "殉道者",
+  "entity.shiny.shiny_pillager": "持弓掠夺者",
+  "entity.shiny.shiny_bee": "蜜蜂幼虫",
+  "entity.shiny.shiny_sniffer": "土豆嗅探者者",
+  "entity.shiny.shiny_chicken": "肉鸡",
+  "entity.shiny.shiny_fox": "Angelina"
 
 }

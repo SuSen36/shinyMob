@@ -46,7 +46,7 @@ public class SCatEntity extends Cat {
         }
         if (!this.level.isClientSide) {
             InteractionResult ret;
-            if(this.isAlive()&&player.getFoodData().needsFood()) {
+            if(this.isAlive()&&player.getFoodData().needsFood()&&!this.isBaby()) {
                 player.getFoodData().eat(5, 0.5F);
                 player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION,2000));
                 if(random.nextInt(3)==0){

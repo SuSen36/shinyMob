@@ -2,6 +2,7 @@ package com.susen36.shiny;
 
 import com.mojang.logging.LogUtils;
 import com.susen36.shiny.init.ItemsInit;
+import com.susen36.shiny.init.ModBiomeModifiers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,11 +23,10 @@ public class ShinyMob {
 
     public ShinyMob() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus bus = MinecraftForge.EVENT_BUS;
         ENTITIES.register(modEventBus);
         ITEMS.register(modEventBus);
-
         MinecraftForge.EVENT_BUS.register(this);
+        ModBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modEventBus);
         modEventBus.addListener(this::addCreative);
     }
 

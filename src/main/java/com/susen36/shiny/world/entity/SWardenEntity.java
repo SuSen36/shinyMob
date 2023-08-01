@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Contract;
 import javax.annotation.Nullable;
 
 public class SWardenEntity extends Warden{
-    private int limitedLifeTicks =5000;
+    private int limitedLifeTicks =400;
 
     public SWardenEntity(EntityType<? extends Warden> type, Level level) {
         super(type, level);
@@ -46,7 +46,8 @@ public class SWardenEntity extends Warden{
         this.noPhysics = false;
         this.setNoGravity(false);
         if ( --this.limitedLifeTicks <= 0) {
-            this.kill();
+            this.limitedLifeTicks = 400;
+            this.hurt(this.damageSources().starve(), 10.0F);
         }
     }
     protected void customServerAiStep() {

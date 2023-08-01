@@ -27,6 +27,9 @@ public class ItemsInit {
    public static final RegistryObject<Item> SHINY_COD_BUCKET = ITEMS.register("shiny_cod_bucket", () -> {
        return new MobBucketItem(EntityInit.SHINY_COD, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_AXOLOTL, new Item.Properties().stacksTo(1));
    });
+    public static final RegistryObject<Item> SHINY_TROPICAL_FISH_BUCKET = ITEMS.register("shiny_tropical_fish_bucket", () -> {
+        return new MobBucketItem(EntityInit.SHINY_TROPICAL_FISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_AXOLOTL, new Item.Properties().stacksTo(1));
+    });
     public static final RegistryObject<Item> feather = ITEMS.register("feather", () -> new Item(ITEM_PROPERTIES_HIDDEN));
 
 }

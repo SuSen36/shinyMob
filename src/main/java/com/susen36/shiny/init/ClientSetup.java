@@ -24,7 +24,7 @@ public class ClientSetup {
         event.registerLayerDefinition(SHoglinModel.LAYER_LOCATION, SHoglinModel::createBodyLayer);
         event.registerLayerDefinition(SPuffFishModelM.LAYER_LOCATION, SPuffFishModelM::createBodyLayer);
         event.registerLayerDefinition(SPuffFishModel.LAYER_LOCATION, SPuffFishModel::createBodyLayer);
-
+        event.registerLayerDefinition(SBeeModel.LAYER_LOCATION, SBeeModel::createBodyLayer);
     }
     @SubscribeEvent
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
@@ -78,6 +78,17 @@ public class ClientSetup {
         event.registerEntityRenderer(EntityInit.SHINY_ELDER_GUARDIAN.get(), SElderGuardianRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_BAT.get(), SBatRender::new);
         event.registerEntityRenderer(EntityInit.SHINY_POLAR_BEAR.get(), SPolarBearRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_TROPICAL_FISH.get(), STropicalFishRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_ZOMBIE_HORSE.get(), SZombieHorseRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_SKELETON_HORSE.get(), SSkeletonHorseRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_PHANTOM.get(), SPhantomRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_AXOLOTL.get(), SAxolotlRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_VINDICATOR.get(), SVindicatorRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_PILLAGER.get(), PillagerRenderer::new);
+        event.registerEntityRenderer(EntityInit.SHINY_BEE.get(), SBeeRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_SNIFFER.get(), SSnifferRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_CHICKEN.get(), SChickenRender::new);
+        event.registerEntityRenderer(EntityInit.SHINY_FOX.get(), SFoxRender::new);
 
     }
 }

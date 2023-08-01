@@ -7,9 +7,11 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.PandaRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.animal.Panda;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Map;
-
+@OnlyIn(Dist.CLIENT)
 public class SPandaRender extends PandaRenderer {
     private static final Map<Panda.Gene, ResourceLocation> TEXTURES = Util.make(Maps.newEnumMap(Panda.Gene.class), (p_115647_) -> {
         p_115647_.put(Panda.Gene.NORMAL, new ResourceLocation(ShinyMob.MODID, "textures/entity/shiny_panda/panda.png"));

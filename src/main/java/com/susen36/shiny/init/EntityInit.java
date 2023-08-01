@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.Piglin;
@@ -39,7 +40,7 @@ public class EntityInit {
     public static final RegistryObject<EntityType<SGhastEntity>> SHINY_GHAST = registerEntity("shiny_ghast", EntityType.Builder.of(SGhastEntity::new, MobCategory.MONSTER).fireImmune().sized(0.5F, 0.5F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SSkeletonEntity>> SHINY_SKELETON = registerEntity("shiny_skeleton", EntityType.Builder.of(SSkeletonEntity::new, MobCategory.MONSTER).sized(0.6F, 1.99F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SWardenEntity>> SHINY_WARDEN = registerEntity("shiny_warden", EntityType.Builder.of(SWardenEntity::new, MobCategory.MISC).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
-    public static final RegistryObject<EntityType<SStrayEntity>> SHINY_STRAY = registerEntity("shiny_stray", EntityType.Builder.of(SStrayEntity::new, MobCategory.MONSTER).sized(0.6F, 1.99F).immuneTo(Blocks.POWDER_SNOW).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SStrayEntity>> SHINY_STRAY = registerEntity("shiny_stray", EntityType.Builder.of(SStrayEntity::new, MobCategory.MONSTER).sized(0.6F, 1.99F).fireImmune().immuneTo(Blocks.POWDER_SNOW).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SHuskEntity>> SHINY_HUSK = registerEntity("shiny_husk", EntityType.Builder.of(SHuskEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SZombieEntity>> SHINY_ZOMBIE = registerEntity("shiny_zombie", EntityType.Builder.of(SZombieEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SStriderEntity>> SHINY_STRIDER= registerEntity("shiny_strider", EntityType.Builder.of(SStriderEntity::new, MobCategory.MONSTER).fireImmune().sized(0.9F, 1.7F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
@@ -78,6 +79,17 @@ public class EntityInit {
     public static final RegistryObject<EntityType<SElderGuardianEntity>> SHINY_ELDER_GUARDIAN= registerEntity("shiny_elder_guardian", EntityType.Builder.of(SElderGuardianEntity::new,MobCategory.MONSTER).sized(1.9975F, 1.9975F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SBatEntity>> SHINY_BAT= registerEntity("shiny_bat", EntityType.Builder.of(SBatEntity::new, MobCategory.AMBIENT).sized(0.5F, 0.9F).clientTrackingRange(5), 0XEDBD00, 0XFFE8AF);
     public static final RegistryObject<EntityType<SPolarBearEntity>> SHINY_POLAR_BEAR= registerEntity("shiny_polar_bear", EntityType.Builder.of(SPolarBearEntity::new, MobCategory.CREATURE).sized(1.4F, 1.4F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<STropicalFishEntity>> SHINY_TROPICAL_FISH= registerEntity("shiny_tropical_fish", EntityType.Builder.of(STropicalFishEntity::new, MobCategory.WATER_AMBIENT).sized(0.5F, 0.4F).clientTrackingRange(4), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SZombieHorseEntity>> SHINY_ZOMBIE_HORSE= registerEntity("shiny_zombie_horse", EntityType.Builder.of(SZombieHorseEntity::new,MobCategory.CREATURE).sized(1.3964844F, 1.6F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SSkeletonHorseEntity>> SHINY_SKELETON_HORSE= registerEntity("shiny_skeleton_horse", EntityType.Builder.of(SSkeletonHorseEntity::new,MobCategory.CREATURE).sized(1.3964844F, 1.6F).fireImmune().immuneTo(Blocks.WITHER_ROSE).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SPhantomEntity>> SHINY_PHANTOM= registerEntity("shiny_phantom", EntityType.Builder.of(SPhantomEntity::new,MobCategory.MONSTER).sized(0.9F, 0.5F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SAxolotlEntity>> SHINY_AXOLOTL= registerEntity("shiny_axolotl", EntityType.Builder.of(SAxolotlEntity::new,MobCategory.AXOLOTLS).sized(0.75F, 0.42F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SVindicatorEntity>> SHINY_VINDICATOR= registerEntity("shiny_vindicator", EntityType.Builder.of(SVindicatorEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SPillagerEntity>> SHINY_PILLAGER= registerEntity("shiny_pillager", EntityType.Builder.of(SPillagerEntity::new, MobCategory.MONSTER).canSpawnFarFromPlayer().sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SBeeEntity>> SHINY_BEE= registerEntity("shiny_bee", EntityType.Builder.of(SBeeEntity::new, MobCategory.CREATURE).sized(0.7F, 0.6F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SSnifferEntity>> SHINY_SNIFFER= registerEntity("shiny_sniffer", EntityType.Builder.of(SSnifferEntity::new,MobCategory.CREATURE).sized(1.9F, 1.75F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SChickenEntity>> SHINY_CHICKEN= registerEntity("shiny_chicken", EntityType.Builder.of(SChickenEntity::new,MobCategory.CREATURE).sized(0.4F, 0.7F).clientTrackingRange(10), 0XEDBD00, 0XFFE8AF);
+    public static final RegistryObject<EntityType<SFoxEntity>> SHINY_FOX= registerEntity("shiny_fox", EntityType.Builder.of(SFoxEntity::new,MobCategory.CREATURE).sized(0.6F, 1.95F).clientTrackingRange(8), 0XEDBD00, 0XFFE8AF);
 
 
     private static <E extends Mob> RegistryObject<EntityType<E>> registerEntity(String entityName, EntityType.Builder<E> builder, int baseEggColor, int overlayEggColor) {
@@ -139,11 +151,27 @@ public class EntityInit {
         event.put(EntityInit.SHINY_ELDER_GUARDIAN.get(), SElderGuardianEntity.createAttributes().build());
         event.put(EntityInit.SHINY_BAT.get(), SBatEntity.createAttributes().build());
         event.put(EntityInit.SHINY_POLAR_BEAR.get(), SPolarBearEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_TROPICAL_FISH.get(), STropicalFishEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_ZOMBIE_HORSE.get(), SZombieHorseEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_SKELETON_HORSE.get(), SSkeletonHorseEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_PHANTOM.get(), SPhantomEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_AXOLOTL.get(), SAxolotlEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_VINDICATOR.get(), SVindicatorEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_PILLAGER.get(), SPillagerEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_BEE.get(), SBeeEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_SNIFFER.get(), SSnifferEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_CHICKEN.get(), SChickenEntity.createAttributes().build());
+        event.put(EntityInit.SHINY_FOX.get(), SFoxEntity.createAttributes().build());
 
     }
     @SubscribeEvent
     public static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
-        event.register(SHINY_ENDERMAN.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+        event.register(SHINY_ENDERMAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE, SEnderManEntity::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+        event.register(SHINY_SHULKER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SShulkerEntity::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+        event.register(SHINY_SHEEP.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+        event.register(SHINY_COW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+        event.register(SHINY_PIG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
+
     }
 
 }

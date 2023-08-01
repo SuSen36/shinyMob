@@ -48,8 +48,17 @@
   "item.shiny.shiny_zoglin_spawn_egg": "Shiny Zoglin Spawn Egg",
   "item.shiny.shiny_zombie_spawn_egg": "Shiny Zombie Spawn Egg",
   "item.shiny.shiny_zombified_piglin_spawn_egg": "Shiny ZombieifiedPiglin Spawn Egg",
-
-
+  "item.shiny.shiny_tropical_fish_spawn_egg": "Shiny Tropical Fish Spawn Egg",
+  "item.shiny.shiny_zombie_horse_spawn_egg": "Shiny Zombie Horse Spawn Egg",
+  "item.shiny.shiny_skeleton_horse_spawn_egg": "Shiny Skeleton Horse Spawn Egg",
+  "item.shiny.shiny_phantom_spawn_egg": "Shiny Phantom Spawn Egg",
+  "item.shiny.shiny_axolotl_spawn_egg": "Shiny Axolotl Spawn Egg",
+  "item.shiny.shiny_vindicator_spawn_egg": "Shiny Vindicator Spawn Egg",
+  "item.shiny.shiny_pillager_spawn_egg": "Shiny Pillager Spawn Egg",
+  "item.shiny.shiny_bee_spawn_egg": "Shiny Bee Spawn Egg",
+  "item.shiny.shiny_sniffer_spawn_egg": "Shiny Sniffer Spawn Egg",
+  "item.shiny.shiny_chicken_spawn_egg": "Shiny Chicken Spawn Egg",
+  "item.shiny.shiny_fox_spawn_egg": "Shiny Fox Spawn Egg",
   "entity.shiny.shiny_enderman": "Shiny Enderman",
   "entity.shiny.shiny_sheep": "Shiny Sheep",
   "entity.shiny.shiny_allay": "Shiny Allay",
@@ -98,5 +107,16 @@
   "entity.shiny.shiny_guardian": "Shiny guardian",
   "entity.shiny.shiny_elder_guardian": "Shiny Elder Guardian",
   "entity.shiny.shiny_bat": "Shiny Bat",
-  "entity.shiny.shiny_polar_bear": "Shiny PolarBear"
+  "entity.shiny.shiny_polar_bear": "Shiny PolarBear",
+  "entity.shiny.shiny_tropical_fish": "Shiny Tropical Fish",
+  "entity.shiny.shiny_zombie_horse": "Shiny Zombie Horse",
+  "entity.shiny.shiny_skeleton_horse": "Shiny Skeleton Horse",
+  "entity.shiny.shiny_phantom": "Shiny Phantom",
+  "entity.shiny.shiny_axolotl": "Shiny Axolotl",
+  "entity.shiny.shiny_vindicator": "Shiny Vindicator",
+  "entity.shiny.shiny_pillager": "Shiny Pillager",
+  "entity.shiny.shiny_bee": "Shiny Bee",
+  "entity.shiny.shiny_sniffer": "Shiny Sniffer",
+  "entity.shiny.shiny_chicken": "Shiny Chicken",
+  "entity.shiny.shiny_fox": "Shiny Fox"
 }

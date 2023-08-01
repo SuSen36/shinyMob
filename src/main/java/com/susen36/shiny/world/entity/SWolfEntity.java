@@ -1,13 +1,14 @@
 package com.susen36.shiny.world.entity;
 
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.Pose;
+import com.susen36.shiny.init.EntityInit;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.level.Level;
+
+import javax.annotation.Nullable;
 
 public class SWolfEntity extends Wolf {
     public SWolfEntity(EntityType<? extends Wolf> type, Level level) {
@@ -27,6 +28,10 @@ public class SWolfEntity extends Wolf {
     @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions entityDimensions) {
         return entityDimensions.height*0.6f;
+    }
+    @Nullable
+    public Wolf getBreedOffspring(ServerLevel p_149001_, AgeableMob p_149002_) {
+        return EntityInit.SHINY_WOLF.get().create(p_149001_);
     }
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, (double)0.3F).add(Attributes.MAX_HEALTH, 16.0D).add(Attributes.ATTACK_DAMAGE, 5.0D);
